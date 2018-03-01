@@ -40,11 +40,11 @@ var GRADE_COLOR = [
               '#008B8B', // bronze
               '#D2691E', // steel
               '#C71585', // aluminum
-              '#FF0000', // out of grade   
+              '#FF0000', // out of grade
           ];
 
-// maximum time when all team finishing 
-var MAX = to_seconds('4:30:00'); 
+// maximum time when all team finishing
+var MAX = to_seconds('4:30:00');
 // wait for miliseconds before next member
 var WAIT = 500;
 
@@ -55,7 +55,7 @@ var COUNT_OF_MEMBERS = 5;
 function to_time(seconds) {
   if (!Number.isNaN(seconds)) {
     var dt = new Date(null);
-    dt.setSeconds(seconds); 
+    dt.setSeconds(seconds);
     return dt.toISOString().substr(11, 8);
   } else {
     return '--:--:--';
@@ -64,12 +64,12 @@ function to_time(seconds) {
 
 // convert elapsed time or pace in "HH:MM:SS" format to timve value in second
 function to_seconds(t) {
-  return t.split(':').reduce((p,c) => p * 60 + +c, 0); 
+  return t.split(':').reduce((p,c) => p * 60 + +c, 0);
 }
 
 // return MAX if not a number
 function mx(v) {
-  return Number.isNaN(v) ? MAX : v;  
+  return Number.isNaN(v) ? MAX : v;
 }
 
 // given a gender & pace, return his/her grade
@@ -98,18 +98,20 @@ function process(arr) {
     GRADE[k+ '_tv'] = GRADE[k].map(p=> p.map(v => to_seconds(v)));
   }
   arr.forEach(d => {
-    d._step = d.members.map(m => to_seconds(m.duration));
-    d._pace = d.members.map(m => to_seconds(m['adjusted-pace']));
-    d._total = d._step.reduce((p,c, i) => (p.push( c + (p[i - 1] || 0) ), p), []);
+    var split = d.split;
+    d._step = split.map(m => to_seconds(m.duration));
+    d._pace = split.map(m => to_seconds(m.pace));
+    d._total = split.map(m => to_seconds(m.elapsed));
     d._grade = d._pace.map((p, i) => gradeOf(d.members[i].gender, p));
-    
-    d._distance = interpolateDistance(d);
+
+    // d._distance = interpolateDistance(d);
   });
 }
 
 //  interpolate distance covered by interval of 10-minute
 var INTERVAL = 600;  // 600 seconds = 10 minute
 
+//  NOT USED!
 function interpolateDistance(d) {
 // noprotect
   var t = gap = INTERVAL, arr = [], idx = 0,  l = 0,  g1, last, goal;
@@ -119,7 +121,7 @@ function interpolateDistance(d) {
     } else {
       g1 = t - d._total[idx];
       if (g1 < gap || idx < COUNT_OF_MEMBERS - 1) {
-        l += ((g1 / d._pace[idx + 1]) || 0) + (((gap - g1) / d._pace[idx]) || 0);  
+        l += ((g1 / d._pace[idx + 1]) || 0) + (((gap - g1) / d._pace[idx]) || 0);
         if (idx < COUNT_OF_MEMBERS - 1) {
           idx++;
         }
@@ -148,7 +150,7 @@ var GENDER_COLOR = {
 function receiveData(records) {
   var arr = records.slice();
   process(arr);
-  
+
   var upto = 0, bar;
   var scale = (svgTeams.node().getBoundingClientRect().width - 40) / MAX;
 
@@ -157,7 +159,7 @@ function receiveData(records) {
       .enter()
       .append('div')
       .attr('style', (d, i) => 'background-color:' + d);
-            
+
   function _init() {
     arr = records.slice();
     bar = svgTeams.selectAll('g')
@@ -167,10 +169,10 @@ function receiveData(records) {
                            .attr('transform', (d,i) => 'translate(0, ' + (i * 28 + 20) + ')');
 
       bar.selectAll('rect')
-           .data(d => d.members)
+           .data(d => d.split)
            .enter()
            .append('rect')
-           .classed('member', true)
+           .classed('lap', true)
            .attr('x', (d, i) => 5 + i * 5)
            .attr('y', 4)
            .attr('height', 7)
@@ -193,7 +195,7 @@ function receiveData(records) {
             .classed('marked', d => +d.no === markedNo)
             .attr('transform', 'translate(0, -15)')
             .on('click', pinMe);
-    
+
     rank.append('rect')
              .attr('width', 33)
              .attr('height', 27)
@@ -211,7 +213,7 @@ function receiveData(records) {
   }
 
   _init();
-  
+
   function playOrStepby() {
     d3.event.stopPropagation();
     var sel = d3.select(this);
@@ -226,7 +228,7 @@ function receiveData(records) {
       if (sel.classed('btn-play')) {
         upto = -1;
         stepByStep = false;
-      }      
+      }
     }
     if (upto >= COUNT_OF_MEMBERS) {
       upto = -1;
@@ -257,14 +259,14 @@ function receiveData(records) {
       }
     }
   }
-  
+
   d3.select('.btn-play').on('click', playOrStepby);
   d3.select('.btn-stepby').on('click', playOrStepby);
-  
+
   d3.select('.fixed').on('click', function() {
     d3.select('#infographics-container').node().parentNode.scrollTop = 0;
   });
-  
+
 }
 
 function pinMe() {
@@ -282,11 +284,11 @@ function pinMe() {
 function showMarked() {
   var marked = d3.select(this).select('.rank.marked').node();
   if (marked != null) {
-    var scroller = container.node().parentNode, 
+    var scroller = container.node().parentNode,
         top = d3.select('.fixed').node().getBoundingClientRect(),
         r   = marked.getBoundingClientRect(),
         p   = r.top - top.height;
-    
+
     if (p < 0) {
       scroller.scrollTop += p;
     } else {
@@ -295,7 +297,7 @@ function showMarked() {
         scroller.scrollTop -= p;
       }
     }
-  } 
+  }
 }
 
 // return key of record = team no.
@@ -318,7 +320,7 @@ function run(arr, bar, upto, scale) {
       step: d => d._step[upto] / factor,
       gap:  d => (upto === 0 ? 0 : d._total[upto - 1] - fastest)
     };
-  
+
     var fastest = arr.reduce( (p, c) => ((c = upto === 0 ? 0 : c._total[upto - 1]) < p ? c: p), Number.MAX_SAFE_INTEGER);
     var max = arr.reduce( (p, c) => (c =c._step[upto]) > p ? c : p, 0);
 
@@ -327,17 +329,17 @@ function run(arr, bar, upto, scale) {
       return c > p ? c: p;
     }, 0);
     max /= factor;
-  
-  
+
+
     bar = svgTeams.selectAll('g').data(arr, key);
     bar.transition()
          .delay(max)
          .duration(400)
          .attr('transform', (d,i) => 'translate(0, ' + (i * 28 + 20) + ')')
          .on('end', showMarked);
-    
+
     svgTeams.selectAll('.rank').on('click', pinMe);
-  
+
     bar.append('rect')
          .classed('f', d => d.members[upto].gender === 'F')
          .attr('x', d => 36 + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
@@ -350,7 +352,7 @@ function run(arr, bar, upto, scale) {
          .duration(func.step)
          .ease(d3.easeLinear)
          .attr("width", d => (d._step[upto] || 0) * scale);
-  
+
     bar.select('.result')
          .attr('fill', '#38F')
          .transition()
@@ -361,7 +363,7 @@ function run(arr, bar, upto, scale) {
          .transition()
          .duration(250)
          .attr('fill', '#38F')
-      
+
     bar.select('.rank').select('text')
          .transition()
          .delay(max)
@@ -369,7 +371,7 @@ function run(arr, bar, upto, scale) {
          .text((d, i) => (' ' + ++i + '.').slice(-3));
 
      if (upto < COUNT_OF_MEMBERS - 1) {
-       
+
        if (timers[upto]) {
          clearTimeout(timers[upto]);
        }
@@ -382,7 +384,7 @@ function run(arr, bar, upto, scale) {
        }
      } else {
        g_upto = -1;
-     } 
+     }
 }
 
 var container = d3.select("#infographics-container"),
@@ -390,4 +392,176 @@ var container = d3.select("#infographics-container"),
     markedNo  = -1,
     g_upto    = -1;
 
-d3.json('data.json', receiveData);
+
+function getPersonalRecord(number) {
+  return $.post({
+   		url : 'detail.php',
+	    data: {
+            category: null,
+            number: number,
+            name: null,
+            age: null,
+            country: null,
+            prefecture: null,
+            sort_key: "place",
+            sort_asc: 1,
+            page:1,
+            d_number: number
+        }
+    });
+}
+
+function val($cell, idx, sep) {
+  var v = $cell.eq(idx).text();
+	return sep ? v.split(sep).pop() : v;
+}
+
+function parseRecord(html) {
+	var $item = $(html).find('.contentsBox .m-item_tbl').eq(0), r = {};
+  var $row = $item.eq(0).find('tr').last(),
+	    $cell = $row.children();
+
+  // basic
+  $.extend(r, {  no: val($cell, 1),
+							 name: val($cell, 2),
+							 result: {},
+							 place: {inTotal: val($cell, 0)}});
+
+  // place & time
+  $item = $item.next();
+	$row = $item.find('tr').first();
+	$cell = $row.children();
+	r.category = val($cell, 1);
+	r.place.byCategory    = val($cell, 2, '：');
+
+	$row  = $row.next();
+	$cell = $row.children();
+	r.age = val($cell, 1);
+	r.place.byAge = val($cell, 2, '：');
+
+	$row  = $row.next();
+	$cell = $row.children();
+	r.gender         = val($cell, 1, '／');
+	r.place.byGender = val($cell, 2, '：');
+
+	$row  = $row.next();
+	$cell = $row.children();
+	r.location         = val($cell, 1);
+	r.place.byLocation = val($cell, 2, '：');
+
+  if (r.location === '日本') {
+    $row = $row.next();
+    r.location     = val($cell, 1);
+    r.perf         = val($cell, 1);
+    r.place.byPerf = val($cell, 2, '：');
+  }
+	$row = $row.next();
+	r.result.net   = val($row.children(), 1);
+	$row = $row.next();
+	r.result.gross = val($row.children(), 1);
+
+  var gap = to_seconds(r.result.gross) - to_seconds(r.result.net);
+  r.result.gap = to_time(gap);
+
+
+  // split
+  $item = $item.next();
+  $row  = $item.find('tr').eq(0);
+
+  var i, odd, split = [], lap;
+
+  for (i = 1; i < 19; i++) {
+    $row = $row.next();
+    $cell = $row.children();
+    if (i === 9) { // half
+      r.result.half = val($cell, 1);
+      r.result['half-net'] = to_time(to_seconds(r.result.half) - gap);
+    } else {
+      if ($cell.length > 1) {
+        if (i === 1) {
+          lap = {
+                  position: val($cell, 0),
+                  elapsed : val($cell, 1)
+                };
+          lap.duration = to_time(to_seconds(lap.elapsed) - gap);
+          lap.pace = to_time(to_seconds(lap.duration) / 5);
+          split.push(lap);
+        } else {
+          lap = $.extend(lap, {
+                  position: val($cell, 0),
+                  elapsed : val($cell, 1)
+                });
+        }
+      } else {
+        lap = {position: null, elapsed: null, duration: val($cell, 0)};
+        lap.pace = to_time(to_seconds(lap.duration) / 5);
+        split.push(lap);
+      }
+    }
+  }
+
+  lap.position = "Finish";
+  lap.pace = to_time(to_seconds(lap.duration) / 2.195);
+  r.split = split;
+
+  console.log('gap:', to_time(gap), r);
+
+	return r;
+}
+
+(_ => {
+  var list =
+`B81756 龙少爷
+B81055 馬步蜓
+C62207 杜云鹏
+C83133 双子星
+D28508 12356890
+E----- Neo
+E54177 ミユキ
+E82618 青园
+E92688 Nick 尼古拉斯
+E92619 岳王
+E92616 三岳
+F51558 林 碧英
+F61170 高宜贵
+F25216 OO
+F82724 徐阳
+F85415 李香君
+G29121 熊二alin
+G53009 ❄
+G53316 Tomoko
+G53421 Minna
+G91580 私教
+G23874 瑞奇
+G67191 rimmel
+H96677 花花Hu
+H96184 何小萍
+J33709 GongYX（颜家巷）
+J51022 相信
+J82809 Today
+J96075 横滨小姐姐
+J81743 arno pan
+K67367 hirochan
+L22350 乐雨
+L30750 wm_z
+G----- ウィスキー`;
+
+  var t, count;
+  list = list.split('\n')
+             .map(r => (r = r.split(/\s+/), {alias: r[1], number: r[0].slice(1), block: r[0].slice(0, 1, 1)}))
+             .filter(r => !isNaN(parseInt(r.number)));
+  console.log('Runners List:', list);
+
+  count = list.length;
+  list = list.map(each => getPersonalRecord(each.number)
+                              .then(html => parseRecord(html))
+                              .then(r => (r.alias = each.alias, r.block = each.block, r)));
+    $.when.apply(null, list)
+     .then(function() {
+       var data = [].slice.apply(arguments);
+       console.log('DATA', data);
+       receiveData(data);
+     });
+})();
+
+//d3.json('data.json', receiveData);
