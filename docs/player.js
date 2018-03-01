@@ -342,7 +342,7 @@ function run(arr, bar, upto, scale) {
     svgTeams.selectAll('.rank').on('click', pinMe);
 
     bar.append('rect')
-         .classed('f', d => d.split[upto].gender === 'F')
+         // .classed('f', d => d.split[upto].gender === 'F')
          .attr('x', d => 36 + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
          .attr('y', 4)
          .attr('height', 7)
