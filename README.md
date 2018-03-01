@@ -1,17 +1,16 @@
 ## An unoffical infographic project for 
-# Chinese Marathon Relay 2017
-## in Saiko Toda, Saitama, Japan
+# Replay Tokyo Marathon 2018
 
-Please view on: https://fengdh.github.io/CMR2017/
+Please view on: https://fengdh.github.io/TokyoMarathon2018/
 
 
 --------
 # 使用许可
-这本是个人兴趣项目，数据经有心人从公开渠道获取后手工录入，尽力核证并佐以合理推测，为求接近事实，但**不能代表或代替主办方正式记录**，仅供参考聊以娱乐。
+这本是个人兴趣项目，数据从公开渠道获取，但仅供参考聊以娱乐。
 
 **任何个人或团体都可以在善意利用的前提下，免费任意使用本项目的源代码及数据，包括引用、复制、参照、转载或修改。除非下列情形：**
   * 不可纂改数据，破坏数据的完整性，故意歪曲基本事实。
-  * 不可用以攻击、质疑作为数据来源的比赛组委会和相关团体，及参赛个人。
+  * 不可用以攻击、质疑作为数据来源的比赛组委会和相关团体，及参赛选手个人。
   * 不可主张自己具有源代码和数据的原创及相关权利，并以此获取商业或其他形式的利益。
   * 不可用来攻击作者和协作者。
 
@@ -20,4 +19,4 @@ Please view on: https://fengdh.github.io/CMR2017/
 
 FENG D.H.
 
-2017/12/01
+2018/03/01
