@@ -49,7 +49,7 @@ var MAX = to_seconds('4:30:00');
 var WAIT = 500;
 
 // count of split for each team
-var COUNT_OF_SPLIT = 10;
+var COUNT_OF_SPLIT = 9;
 
 // convert elapsed time in second to "HH:MM:SS"
 function to_time(seconds) {
@@ -315,7 +315,7 @@ var timers = [];
 // scale: convert time value in second to width of bar
 function run(arr, bar, upto, scale) {
     arr.sort((a, b)=> mx(a._total[upto]) -  mx(b._total[upto]));
-    var factor = upto > 0 ? 6 : 3; 
+    var factor = upto > 0 ? 6 : 3;
     factor = 12;
     var func = {
       step: d => d._step[upto] / factor,
