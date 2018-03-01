@@ -168,16 +168,16 @@ function receiveData(records) {
                         .append('g')
                            .attr('transform', (d,i) => 'translate(0, ' + (i * 28 + 20) + ')');
 
-      bar.selectAll('rect')
-           .data(d => d.split)
-           .enter()
-           .append('rect')
-           .classed('lap', true)
-           .attr('x', (d, i) => 5 + i * 5)
-           .attr('y', 4)
-           .attr('height', 7)
-           .attr('width',  4)
-           .attr('fill', '#FFF');//d => GENDER_COLOR[d.gender || '']);
+      // bar.selectAll('rect')
+      //      .data(d => d.split)
+      //      .enter()
+      //      .append('rect')
+      //      .classed('lap', true)
+      //      .attr('x', (d, i) => 5 + i * 5)
+      //      .attr('y', 4)
+      //      .attr('height', 7)
+      //      .attr('width',  4)
+      //      .attr('fill', d => GENDER_COLOR[d.gender || '']);
 
     bar.append('text')
             .attr('class', 'name')
@@ -315,7 +315,8 @@ var timers = [];
 // scale: convert time value in second to width of bar
 function run(arr, bar, upto, scale) {
     arr.sort((a, b)=> mx(a._total[upto]) -  mx(b._total[upto]));
-    var factor = upto > 0 ? 6 : 3; // factor = 12;
+    var factor = upto > 0 ? 6 : 3; 
+    factor = 12;
     var func = {
       step: d => d._step[upto] / factor,
       gap:  d => (upto === 0 ? 0 : d._total[upto - 1] - fastest)
@@ -346,7 +347,7 @@ function run(arr, bar, upto, scale) {
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
-         .attr('fill', d => GRADE_COLOR[d._grade[upto]])// step_color(upto))
+         .attr('fill', d => '#FFF')//GRADE_COLOR[d._grade[upto]])// step_color(upto))
          .transition()
          .delay(func.gap)
          .duration(func.step)
