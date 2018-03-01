@@ -395,7 +395,7 @@ var container = d3.select("#infographics-container"),
 
 function getPersonalRecord(number) {
   return $.post({
-   		url : 'http://www.marathon.tokyo/result/detail.php',
+   		url : 'detail.php',
 	    data: {
             category: null,
             number: number,
@@ -508,7 +508,7 @@ function parseRecord(html) {
 
 	return r;
 }
-
+/*
 (_ => {
   var list =
 `B81756 龙少爷
@@ -563,5 +563,6 @@ G----- ウィスキー`;
        receiveData(data);
      });
 })();
+//*/
 
-//d3.json('data.json', receiveData);
+d3.json('data.json', receiveData);
