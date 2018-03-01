@@ -1,27 +1,34 @@
 // Runner grade of 2017
 var GRADE = {
           M: [  ['0:00', '2:51'],  // god!       sub 2:00
-                ['2:52', '3:13'],  // semigod,   sub 2:13, 国际健将
-                ['3:14', '3:19'],  // legend,    sub 2:19, 国家健将
-                ['3:20', '3:39'],  // superhero, sub 2:34, 国家一级
-                ['3:40', '3:55'],  // diamond,   sub 2:45, sub-elite overseas
-                ['3:56', '4:09'],  // platium,   sub 2:55, sub-elite domestic
+                ['2:52', '3:13'],  // semigod,   sub 2:13, 男子国际健将
+                ['3:14', '3:19'],  // legend,    sub 2:19, 男子国家健将
+                ['3:20', '3:39'],  // superhero, sub 2:34, 男子国家一级
+                ['3:40', '3:55'],  // diamond,   sub 2:45, 東馬直通，男子海外，sub-elite overseas
+                ['3:56', '4:09'],  // platium,   sub 2:55, 東馬直通，男子日本国内，sub-elite domestic
                 ['4:10', '4:16'],  // gold,      sub 3:00
-                ['4:17', '4:30'],  // silver,    sub 3:10, 国家二级
+                ['4:17', '4:30'],  // silver,    sub 3:10, 男子国家二级
                 ['4:31', '4:37'],  // bronze,    sub 3:15, Male BQ/age:40-44
                 ['4:38', '4:52'],  // steel,     sub 3:25, Male BQ/age:45-49
-                ['4:53', '5:40'],  // aluminium, sub 4:00
-                ['5:41', '7:07'],  // wood,      sub 5:00
-                ['7:08', 'MAX'],   // out of grade
+                ['4:53', '5:41'],  // aluminium, sub 4:00, 男子国家三级
+                ['5:42', '7:07'],  // wood,      sub 5:00
+                ['7:08', '8:31'],  // clay,      sub 6:00
+                ['8:32', 'MAX'],   // out of grade
                ],
-          F: [  ['0:00', '4:25'],  // diamond
-                ['4:26', '4:42'],  // platium
-                ['4:43', '4:51'],  // gold
-                ['4:52', '5:05'],  // silver
-                ['5:06', '5:29'],  // bronze
-                ['5:30', '5:56'],  // steel
-                ['5:57', '6:22'],  // aluminium
-                ['5:23', 'MAX'],  // out of grade
+          F: [  ['0:00', '2:51'],  // goddess!   sub 2:00
+                ['2:52', '3:39'],  // angel,     sub 2:34, 女子国际健将
+                ['3:40', '3:48'],  // legend,    sub 2:40, 女子国家健将
+                ['3:49', '4:43'],  // superhero, sub 3:19, 女子国家一级
+                ['4:44', '4:59'],  // diamond,   sub 3:30, 東馬直通，女子海外，sub-elite overseas
+                ['5:00', '5:13'],  // platium,   sub 3:40, 東馬直通，女子日本国呢，sub-elite domestic
+                ['5:14', '5:20'],  // gold,      sub 3:45, Female BQ/age:40-40
+                ['5:21', '5:27'],  // silver,    sub 3:50, 女子国家二级
+                ['5:28', '5:34'],  // bronze,    sub 3:55, Male BQ/age:45-49
+                ['5:35', '5:41'],  // steel,     sub 4:00
+                ['5:42', '5:55'],  // alumnium,  sub 4:10, 女子国家三级
+                ['5:56', '7:07'],  // wood,      sub 5:00
+                ['7:08', '8:31'],  // clay,      sub 6:00
+                ['8:32', 'MAX'],   // out of grade
                ],
         };
 // color assigned for each grade
