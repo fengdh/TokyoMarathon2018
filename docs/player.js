@@ -48,8 +48,8 @@ var MAX = to_seconds('4:30:00');
 // wait for miliseconds before next member
 var WAIT = 500;
 
-// count of members for each team
-var COUNT_OF_MEMBERS = 5;
+// count of split for each team
+var COUNT_OF_SPLIT = 10;
 
 // convert elapsed time in second to "HH:MM:SS"
 function to_time(seconds) {
@@ -102,7 +102,7 @@ function process(arr) {
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed));
-    d._grade = d._pace.map((p, i) => gradeOf(d.members[i].gender, p));
+    d._grade = d._pace.map((p, i) => gradeOf(d.split[i].gender, p));
 
     // d._distance = interpolateDistance(d);
   });
@@ -115,21 +115,21 @@ var INTERVAL = 600;  // 600 seconds = 10 minute
 function interpolateDistance(d) {
 // noprotect
   var t = gap = INTERVAL, arr = [], idx = 0,  l = 0,  g1, last, goal;
-  for (t = gap; t <= MAX && idx < COUNT_OF_MEMBERS; t += gap) {
+  for (t = gap; t <= MAX && idx < COUNT_OF_SPLIT; t += gap) {
     if (t <= d._total[idx]) {
       l += (gap / d._pace[idx]) || 0;
     } else {
       g1 = t - d._total[idx];
-      if (g1 < gap || idx < COUNT_OF_MEMBERS - 1) {
+      if (g1 < gap || idx < COUNT_OF_SPLIT - 1) {
         l += ((g1 / d._pace[idx + 1]) || 0) + (((gap - g1) / d._pace[idx]) || 0);
-        if (idx < COUNT_OF_MEMBERS - 1) {
+        if (idx < COUNT_OF_SPLIT - 1) {
           idx++;
         }
       } else if (goal) {
          l = 42.195;
       } else {
          l += gap / d._pace[idx];
-        if (idx >= COUNT_OF_MEMBERS - 1) {
+        if (idx >= COUNT_OF_SPLIT - 1) {
           goal = true;
         }
       }
@@ -230,7 +230,7 @@ function receiveData(records) {
         stepByStep = false;
       }
     }
-    if (upto >= COUNT_OF_MEMBERS) {
+    if (upto >= COUNT_OF_SPLIT) {
       upto = -1;
     }
     if (!stepByStep || upto === -1) {
@@ -251,7 +251,7 @@ function receiveData(records) {
       } else {
         var next = upto;
         setTimeout( () => run(arr, bar, next, scale), 500);
-        if (upto >= COUNT_OF_MEMBERS - 1) {
+        if (upto >= COUNT_OF_SPLIT - 1) {
           upto = -1;
         } else {
           upto++;
@@ -341,7 +341,7 @@ function run(arr, bar, upto, scale) {
     svgTeams.selectAll('.rank').on('click', pinMe);
 
     bar.append('rect')
-         .classed('f', d => d.members[upto].gender === 'F')
+         .classed('f', d => d.split[upto].gender === 'F')
          .attr('x', d => 36 + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
          .attr('y', 4)
          .attr('height', 7)
@@ -370,7 +370,7 @@ function run(arr, bar, upto, scale) {
          .duration(400)
          .text((d, i) => (' ' + ++i + '.').slice(-3));
 
-     if (upto < COUNT_OF_MEMBERS - 1) {
+     if (upto < COUNT_OF_SPLIT - 1) {
 
        if (timers[upto]) {
          clearTimeout(timers[upto]);
