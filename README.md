@@ -1,4 +1,4 @@
-## An unoffical infographic project for 
+## An unoffical infographic project
 # Replay Tokyo Marathon 2018
 
 Please view on: https://fengdh.github.io/TokyoMarathon2018/
