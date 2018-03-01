@@ -183,7 +183,7 @@ function receiveData(records) {
             .attr('class', 'name')
             .attr('x', d => 36)
             .attr('y', 0)
-            .text(d => 'T' + d.no + '.' + d.name);
+            .text(d => d.block + d.no + '.' + d.name.split('／').pop());
 
     bar.append('text')
             .attr('class', 'result')
