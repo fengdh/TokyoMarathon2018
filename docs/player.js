@@ -395,7 +395,7 @@ var container = d3.select("#infographics-container"),
 
 function getPersonalRecord(number) {
   return $.post({
-   		url : 'detail.php',
+   		url : 'https://www.marathon.tokyo/result/detail.php',
 	    data: {
             category: null,
             number: number,
