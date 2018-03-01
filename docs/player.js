@@ -1,13 +1,18 @@
 // Runner grade of 2017
 var GRADE = {
-          M: [  ['0:00', '3:39'],  // diamond
-                ['3:40', '3:55'],  // platium
-                ['3:56', '4:05'],  // gold
-                ['4:06', '4:18'],  // silver
-                ['4:19', '4:41'],  // bronze
-                ['4:42', '5:06'],  // steel
-                ['5:07', '5:31'],  // aluminium
-                ['5:32', 'MAX'],  // out of grade
+          M: [  ['0:00', '2:51'],  // god!       sub 2:00
+                ['2:52', '3:13'],  // semigod,   sub 2:13, 国际健将
+                ['3:14', '3:19'],  // legend,    sub 2:19, 国家健将
+                ['3:20', '3:39'],  // superhero, sub 2:34, 国家一级
+                ['3:40', '3:55'],  // diamond,   sub 2:45, sub-elite overseas
+                ['3:56', '4:09'],  // platium,   sub 2:55, sub-elite domestic
+                ['4:10', '4:16'],  // gold,      sub 3:00
+                ['4:17', '4:30'],  // silver,    sub 3:10, 国家二级
+                ['4:31', '4:37'],  // bronze,    sub 3:15, Male BQ/age:40-44
+                ['4:38', '4:52'],  // steel,     sub 3:25, Male BQ/age:45-49
+                ['4:53', '5:40'],  // aluminium, sub 4:00
+                ['5:41', '7:07'],  // wood,      sub 5:00
+                ['7:08', 'MAX'],   // out of grade
                ],
           F: [  ['0:00', '4:25'],  // diamond
                 ['4:26', '4:42'],  // platium
