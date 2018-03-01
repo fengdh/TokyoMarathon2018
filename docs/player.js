@@ -177,7 +177,7 @@ function receiveData(records) {
            .attr('y', 4)
            .attr('height', 7)
            .attr('width',  4)
-           .attr('fill', d => GENDER_COLOR[d.gender || '']);
+           .attr('fill', '#FFF');//d => GENDER_COLOR[d.gender || '']);
 
     bar.append('text')
             .attr('class', 'name')
@@ -423,7 +423,7 @@ function parseRecord(html) {
 
   // basic
   $.extend(r, {  no: val($cell, 1),
-							 name: val($cell, 2),
+							 name: val($cell, 2).split('／').pop(),
 							 result: {},
 							 place: {inTotal: val($cell, 0)}});
 
