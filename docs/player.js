@@ -98,7 +98,7 @@ function process(arr) {
     split.unshift({
       position: '0km',
       elapsed: "0:00:00",
-      duration: d.gap,
+      duration: gap,
       pace: "SLOW"
     });
     d._step = split.map(m => to_seconds(m.duration));
