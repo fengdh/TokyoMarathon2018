@@ -89,7 +89,8 @@ function process(arr) {
     GRADE[k+ '_tv'] = GRADE[k].map(p=> p.map(v => to_seconds(v)));
   }
   arr.forEach(d => {
-    d.name = d.alias + '(' + d.name.split('／').pop() + ')'
+    // d.name = d.alias + '(' + d.name.split('／').pop() + ')';
+    d.name = d.alias || d.name.split('／').pop();
     d.gender = d.gender.slice(0, 1);
     d.gender = d.gender === 'W' ? 'F' : d.gender;
 
@@ -184,13 +185,13 @@ function receiveData(records) {
 
     bar.append('text')
             .attr('class', 'result')
-            .attr('x', d => 280)
+            .attr('x', d => 240)
             .attr('y', 0);
 
     var rank = bar.insert('g', ':first-child')
             .attr('class', 'rank')
             .classed('marked', d => +d.no === markedNo)
-            .attr('transform', 'translate(9, -15)')
+            .attr('transform', 'translate(12, -15)')
             .on('click', pinMe);
 
     rank.append('rect')
@@ -355,7 +356,7 @@ function run(arr, bar, upto, scale) {
          .attr('fill', '#38F')
          .transition()
          .delay(func.gap)
-         .text(d => to_time(d._total[upto]) + ' (' + to_time(d._total[upto] + d._gap) +  ')')
+         .text(d => to_time(d._total[upto]) + ' (+' + to_time(d._gap).slice(4) +  ')')
          .filter(d => !Number.isNaN(d._total[upto]))
          .attr('fill', '#FFF')
          .transition()
