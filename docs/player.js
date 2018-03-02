@@ -32,18 +32,7 @@ var GRADE = {
                ],
         };
 // color assigned for each grade
-var GRADE_COLOR = [
-              '#00FFFF', // diamond
-              '#FFFFFF', // platium
-              '#FFFF00', // gold
-              '#7FFF00', // silver
-              '#008B8B', // bronze
-              '#D2691E', // steel
-              '#C71585', // aluminum
-              '#FF0000', // out of grade
-          ];
-
-GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
+var GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
 
 // maximum time when all team finishing
 var MAX = to_seconds('4:30:00');
@@ -77,6 +66,7 @@ function mx(v) {
 // given a gender & pace, return his/her grade
 function gradeOf(gender, pace) {
   gender = gender.slice(0, 1);
+  gender = gender === 'W' ? 'F' : gender;
   var i, arr = GRADE[gender + '_tv'];  // tv: time value in seconds
   if (!arr) {
     return -1;
