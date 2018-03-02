@@ -35,7 +35,7 @@ var GRADE = {
 var GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
 
 // maximum time when all team finishing
-var MAX = to_seconds('4:30:00');
+var MAX = to_seconds('6:30:00');
 // wait for miliseconds before next member
 var WAIT = 500;
 
@@ -170,7 +170,7 @@ function receiveData(records) {
            .classed('lap', true)
            .attr('cx', (d, i) => 15 + i * 5)
            .attr('cy', 4)
-           .attr('radius', 6)
+           .attr('r', 6)
            // .attr('height', 7)
            // .attr('width',  24)
            .attr('fill', d => GENDER_COLOR[d.gender || '']);
