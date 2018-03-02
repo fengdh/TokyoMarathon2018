@@ -1,4 +1,4 @@
-// Runner grade of 2017
+// Runner grades
 var GRADE = {
           M: [  ['0:00', '2:51'],  // god!       sub 2:00
                 ['2:52', '3:13'],  // semigod,   sub 2:13, 男子国际健将
@@ -93,10 +93,10 @@ function process(arr) {
   arr.forEach(d => {
     d.name = d.alias + '(' + d.name.split('／').pop() + ')'
 
-    var split = d.split;
+    var split = d.split, gap = d.result.gap;
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
-    d._total = split.map(m => to_seconds(m.elapsed));
+    d._total = split.map(m => to_seconds(m.elapsed) - gap);
     d._grade = d._pace.map((p, i) => gradeOf(d.gender, p));
 
     // d._distance = interpolateDistance(d);
