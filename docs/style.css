@@ -96,25 +96,25 @@ svg {
   line-height: 30px;
 }
 .legend > div:nth-child(1):after{
-  content: '钻石';
+  content: '神Sub2';
 }
 .legend > div:nth-child(2):after{
-  content: '铂金';
+  content: '国际健将';
 }
 .legend > div:nth-child(3):after{
-  content: '黄金';
+  content: '国家一级';
 }
 .legend > div:nth-child(4):after{
-  content: '白银';
+  content: '東馬海外直通';
 }
 .legend > div:nth-child(5):after{
-  content: '青铜';
+  content: '東馬日本直通';
 }
 .legend > div:nth-child(6):after{
-  content: '赤铁';
+  content: '大众高手';
 }
 .legend > div:nth-child(7):after{
-  content: '黑铝';
+  content: '国家二级';
 }
 .legend > div:nth-child(8):after{
   content: '小黑铝';
@@ -132,7 +132,7 @@ svg {
 #svg-teams {
   width: 100%;
   min-width: 240px;
-  max-width: 800px;
+  --max-width: 800px;
   height: 2000px;
   box-sizing: border-box;
 }
