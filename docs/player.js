@@ -93,7 +93,7 @@ function process(arr) {
   arr.forEach(d => {
     d.name = d.alias + '(' + d.name.split('／').pop() + ')'
 
-    var split = d.split, gap = d.result.gap;
+    var split = d.split, gap = to_seconds(d.result.gap);
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed) - gap);
