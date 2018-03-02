@@ -2168,82 +2168,80 @@
   "block": "J"
  },
  {
-  "no": "96075",
-  "name": "金 美香／mika kon",
+  "no": "96705",
+  "name": "ｗａｎｇ ｙａｎｇ／wang yang",
   "result": {
-   "net": "4:51:20",
-   "gross": "5:00:30",
-   "gap": "00:09:10",
-   "half": "2:31:32",
-   "half-net": "02:22:22"
+   "net": "4:21:41",
+   "gross": "4:38:27",
+   "gap": "00:16:46",
+   "half": "2:25:19",
+   "half-net": "02:08:33"
   },
   "place": {
-   "inTotal": "19411",
-   "byCategory": "3372／7893",
-   "byAge": "3675／6016",
-   "byGender": "3364／7893",
-   "byLocation": "15664／28342",
-   "byPerf": "15664／28342"
+   "inTotal": "15357",
+   "byCategory": "2497／7893",
+   "byAge": "2050／4545",
+   "byGender": "2490／7893",
+   "byLocation": "349／865"
   },
   "category": "マラソン女子／Marathon Women",
-  "age": "46",
+  "age": "35",
   "gender": "Women",
-  "location": "日本",
-  "perf": "日本",
+  "location": "PR OF CHINA",
   "split": [
    {
     "position": "5km",
-    "elapsed": "0:40:47",
-    "duration": "00:31:37",
-    "pace": "00:06:19"
+    "elapsed": "0:47:04",
+    "duration": "00:30:18",
+    "pace": "00:06:03"
    },
    {
     "position": "10km",
-    "elapsed": "1:13:58",
-    "duration": "0:33:11",
-    "pace": "00:06:38"
+    "elapsed": "1:17:49",
+    "duration": "0:30:45",
+    "pace": "00:06:09"
    },
    {
     "position": "15km",
-    "elapsed": "1:48:35",
-    "duration": "0:34:37",
-    "pace": "00:06:55"
+    "elapsed": "1:48:25",
+    "duration": "0:30:36",
+    "pace": "00:06:07"
    },
    {
     "position": "20km",
-    "elapsed": "2:23:15",
-    "duration": "0:34:40",
-    "pace": "00:06:56"
+    "elapsed": "2:18:31",
+    "duration": "0:30:06",
+    "pace": "00:06:01"
    },
    {
     "position": "25km",
-    "elapsed": "2:58:39",
-    "duration": "0:35:24",
-    "pace": "00:07:04"
+    "elapsed": "2:49:10",
+    "duration": "0:30:39",
+    "pace": "00:06:07"
    },
    {
     "position": "30km",
-    "elapsed": "3:35:31",
-    "duration": "0:36:52",
-    "pace": "00:07:22"
+    "elapsed": "3:20:45",
+    "duration": "0:31:35",
+    "pace": "00:06:19"
    },
    {
     "position": "35km",
-    "elapsed": "4:09:48",
-    "duration": "0:34:17",
-    "pace": "00:06:51"
+    "elapsed": "3:52:45",
+    "duration": "0:32:00",
+    "pace": "00:06:24"
    },
    {
     "position": "40km",
-    "elapsed": "4:46:59",
-    "duration": "0:37:11",
-    "pace": "00:07:26"
+    "elapsed": "4:25:06",
+    "duration": "0:32:21",
+    "pace": "00:06:28"
    },
    {
     "position": "Finish",
-    "elapsed": "5:00:30",
-    "duration": "0:13:31",
-    "pace": "00:06:09"
+    "elapsed": "4:38:27",
+    "duration": "0:13:21",
+    "pace": "00:06:04"
    }
   ],
   "alias": "横滨小姐姐",
