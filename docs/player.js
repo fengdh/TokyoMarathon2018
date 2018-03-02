@@ -351,10 +351,10 @@ function run(arr, bar, upto, scale) {
 
     bar.append('rect')
          // .classed('f', d => d.gender === 'F')
-         .attr('x', (d, i) => 
+         .attr('x', (d, i) =>
             {
-              
-              return LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale) + (i === 0 ? (d._step[upto] || 0) * scale): 0);
+
+              return LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale + (i === 0 ? (d._step[upto] || 0) * scale): 0)
             }
          .attr('y', 4)
          .attr('height', 7)
