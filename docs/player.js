@@ -33,7 +33,8 @@ var GRADE = {
         };
 // color assigned for each grade
 var GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
-
+GRADE_COLOR.pop();
+GRADE_COLOR.push('#444');
 // maximum time when all team finishing
 var MAX = to_seconds('7:00:00');
 // wait for miliseconds before next member
