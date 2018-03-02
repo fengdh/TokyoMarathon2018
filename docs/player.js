@@ -107,7 +107,7 @@ function process(arr) {
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed));
-    d._grade = d._pace.map((p, i) => gradeOf(d.split[i].gender, p));
+    d._grade = d._pace.map((p, i) => gradeOf(d.gender, p));
 
     // d._distance = interpolateDistance(d);
   });
@@ -347,7 +347,7 @@ function run(arr, bar, upto, scale) {
     svgTeams.selectAll('.rank').on('click', pinMe);
 
     bar.append('rect')
-         // .classed('f', d => d.split[upto].gender === 'F')
+         // .classed('f', d => d.gender === 'F')
          .attr('x', d => 36 + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
          .attr('y', 4)
          .attr('height', 7)
