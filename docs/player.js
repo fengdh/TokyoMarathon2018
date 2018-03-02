@@ -43,6 +43,8 @@ var GRADE_COLOR = [
               '#FF0000', // out of grade
           ];
 
+GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
+
 // maximum time when all team finishing
 var MAX = to_seconds('4:30:00');
 // wait for miliseconds before next member
@@ -349,7 +351,7 @@ function run(arr, bar, upto, scale) {
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
-         .attr('fill', d => '#FFF')//GRADE_COLOR[d._grade[upto]])// step_color(upto))
+         .attr('fill', d => GRADE_COLOR[d._grade[upto]])// step_color(upto))
          .transition()
          .delay(func.gap)
          .duration(func.step)
