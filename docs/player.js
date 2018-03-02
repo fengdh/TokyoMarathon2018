@@ -163,16 +163,16 @@ function receiveData(records) {
                         .append('g')
                            .attr('transform', (d,i) => 'translate(0, ' + (i * 28 + 20) + ')');
 
-      // bar.selectAll('rect')
-      //      .data(d => d.split)
-      //      .enter()
-      //      .append('rect')
-      //      .classed('lap', true)
-      //      .attr('x', (d, i) => 5 + i * 5)
-      //      .attr('y', 4)
-      //      .attr('height', 7)
-      //      .attr('width',  4)
-      //      .attr('fill', d => GENDER_COLOR[d.gender || '']);
+      bar.selectAll('rect')
+           .data(d)
+           .enter()
+           .append('rect')
+           .classed('lap', true)
+           .attr('x', (d, i) => 5 + i * 5)
+           .attr('y', 4)
+           .attr('height', 7)
+           .attr('width',  24)
+           .attr('fill', d => GENDER_COLOR[d.gender || '']);
 
     bar.append('text')
             .attr('class', 'name')
