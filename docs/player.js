@@ -181,7 +181,7 @@ function receiveData(records) {
             .attr('class', 'name')
             .attr('x', d => LEFT_LINE)
             .attr('y', 0)
-            .text(d => d.block + d.no + ' ' + d.name);
+            .text(d => d.block + /* d.no + */ ' ' + d.name);
 
     bar.append('text')
             .attr('class', 'result')
