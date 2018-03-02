@@ -354,7 +354,7 @@ function run(arr, bar, upto, scale) {
          .attr('x', (d, i) =>
             {
 
-              return LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale + (i === 0 ? (d._step[upto] || 0) * scale): 0)
+              return LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale + (i === 0 ? (d._step[upto] || 0) * scale : 0)
             }
          .attr('y', 4)
          .attr('height', 7)
