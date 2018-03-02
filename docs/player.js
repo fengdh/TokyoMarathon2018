@@ -56,7 +56,8 @@ function to_time(seconds) {
 
 // convert elapsed time or pace in "HH:MM:SS" format to timve value in second
 function to_seconds(t) {
-  return t.split(':').reduce((p,c) => p * 60 + +c, 0);
+  var sign = t.slice(0, 1) === '-' ? (t = t.slice(1), -1) : 1;
+  return sign * t.split(':').reduce((p,c) => p * 60 + +c, 0);
 }
 
 // return MAX if not a number
