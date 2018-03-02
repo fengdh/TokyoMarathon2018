@@ -35,7 +35,7 @@ var GRADE = {
 var GRADE_COLOR = GRADE.M.map((v, i, arr) => d3.interpolateRainbow(i/arr.length));
 
 // maximum time when all team finishing
-var MAX = to_seconds('7:30:00');
+var MAX = to_seconds('7:00:00');
 // wait for miliseconds before next member
 var WAIT = 500;
 
@@ -137,8 +137,8 @@ function interpolateDistance(d) {
 // color for gender (Male/Female/Unknown)
 var GENDER_COLOR = {
   '':  '#444',
-  'F': '#F00',
-  'M': '#44F',
+  'F': '#F33',
+  'M': '#AAF',
 }
 
 // callback after receive data
@@ -189,7 +189,7 @@ function receiveData(records) {
     var rank = bar.insert('g', ':first-child')
             .attr('class', 'rank')
             .classed('marked', d => +d.no === markedNo)
-            .attr('transform', 'translate(0, -15)')
+            .attr('transform', 'translate(6, -15)')
             .on('click', pinMe);
 
     rank.append('rect')
