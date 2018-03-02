@@ -98,6 +98,8 @@ function process(arr) {
     GRADE[k+ '_tv'] = GRADE[k].map(p=> p.map(v => to_seconds(v)));
   }
   arr.forEach(d => {
+    d.name = d.alias + '(' + d.name.split('／').pop() + ')'
+
     var split = d.split;
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
@@ -183,7 +185,7 @@ function receiveData(records) {
             .attr('class', 'name')
             .attr('x', d => 36)
             .attr('y', 0)
-            .text(d => d.block + d.no + '.' + d.name.split('／').pop());
+            .text(d => d.block + d.no + ' ' + d.name);
 
     bar.append('text')
             .attr('class', 'result')
