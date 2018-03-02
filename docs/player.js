@@ -65,8 +65,6 @@ function mx(v) {
 
 // given a gender & pace, return his/her grade
 function gradeOf(gender, pace) {
-  gender = gender.slice(0, 1);
-  gender = gender === 'W' ? 'F' : gender;
   var i, arr = GRADE[gender + '_tv'];  // tv: time value in seconds
   if (!arr) {
     return -1;
@@ -92,6 +90,8 @@ function process(arr) {
   }
   arr.forEach(d => {
     d.name = d.alias + '(' + d.name.split('／').pop() + ')'
+    d.gender = d.gender.slice(0, 1);
+    d.gender = d.gender === 'W' ? 'F' : d.gender;
 
     var split = d.split, gap = to_seconds(d.result.gap);
     d._step = split.map(m => to_seconds(m.duration));
@@ -311,7 +311,7 @@ var timers = [];
 function run(arr, bar, upto, scale) {
     arr.sort((a, b)=> mx(a._total[upto]) -  mx(b._total[upto]));
     var factor = upto > 0 ? 6 : 3;
-    factor = 12;
+    factor = 24;
     var func = {
       step: d => d._step[upto] / factor,
       gap:  d => (upto === 0 ? 0 : d._total[upto - 1] - fastest)
