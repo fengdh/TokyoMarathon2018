@@ -95,6 +95,12 @@ function process(arr) {
     d.gender = d.gender === 'W' ? 'F' : d.gender;
 
     var split = d.split, gap = to_seconds(d.result.gap);
+    split.unshift({
+      position: '0km',
+      elapsed: "0:00:00",
+      duration: d.gap,
+      pace: "SLOW"
+    });
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed) - gap);
@@ -181,7 +187,7 @@ function receiveData(records) {
             .attr('class', 'name')
             .attr('x', d => LEFT_LINE)
             .attr('y', 0)
-            .text(d => d.block + /* d.no + */ ' ' + d.name);
+            .text(d => d.block + d.no + ' ' + d.name);
 
     bar.append('text')
             .attr('class', 'result')
