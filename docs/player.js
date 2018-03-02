@@ -99,12 +99,12 @@ function process(arr) {
     d.gender = d.gender === 'W' ? 'F' : d.gender;
 
     var split = d.split, gap = to_seconds(d.result.gap);
-    split.unshift({
-      position: '0km',
-      elapsed: "0:00:00",
-      duration: to_time(-gap),
-      pace: "SLOW"
-    });
+    // split.unshift({
+    //   position: '0km',
+    //   elapsed: "0:00:00",
+    //   duration: to_time(-gap),
+    //   pace: "SLOW"
+    // });
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed) - gap);
@@ -351,7 +351,7 @@ function run(arr, bar, upto, scale) {
 
     bar.append('rect')
          // .classed('f', d => d.gender === 'F')
-         .attr('x', (d, i) => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale - (i === 0 ? (d._step[upto] || 0) * scale : 0))
+         .attr('x', (d, i) => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale)
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
@@ -361,6 +361,7 @@ function run(arr, bar, upto, scale) {
          .duration(func.step)
          .ease(d3.easeLinear)
          .attr("width", d => Math.abs((d._step[upto] || 0) * scale));
+         // .attr("width", d => Math.abs((d._step[upto] || 0) * scale));
 
     bar.select('.result')
          .attr('fill', '#38F')
