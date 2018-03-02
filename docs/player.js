@@ -166,12 +166,13 @@ function receiveData(records) {
       bar.selectAll('rect')
            .data(d => [d])
            .enter()
-           .append('rect')
+           .append('circle')
            .classed('lap', true)
-           .attr('x', (d, i) => 5 + i * 5)
-           .attr('y', 4)
-           .attr('height', 7)
-           .attr('width',  24)
+           .attr('cx', (d, i) => 15 + i * 5)
+           .attr('cy', 4)
+           .attr('radius', 6)
+           // .attr('height', 7)
+           // .attr('width',  24)
            .attr('fill', d => GENDER_COLOR[d.gender || '']);
 
     bar.append('text')
