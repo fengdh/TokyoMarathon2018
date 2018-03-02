@@ -45,10 +45,12 @@ var COUNT_OF_SPLIT = 9;
 
 // convert elapsed time in second to "HH:MM:SS"
 function to_time(seconds) {
+  var sign = seconds < 0 ? (seconds = -seconds, '-') : '';
+
   if (!Number.isNaN(seconds)) {
     var dt = new Date(null);
     dt.setSeconds(seconds);
-    return dt.toISOString().substr(11, 8);
+    return sign + dt.toISOString().substr(11, 8);
   } else {
     return '--:--:--';
   }
