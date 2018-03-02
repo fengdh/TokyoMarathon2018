@@ -86,7 +86,7 @@ svg {
 .legend > div{
   display: inline-block;
   height: 7px;
-  width: 48px;
+  width: 96px;
   margin-right: 2px;
   color: #FFF;
   text-align: center;
@@ -102,22 +102,40 @@ svg {
   content: '国际健将';
 }
 .legend > div:nth-child(3):after{
-  content: '国家一级';
+  content: '国家健将';
 }
 .legend > div:nth-child(4):after{
-  content: '東馬海外直通';
+  content: '国家一级';
 }
 .legend > div:nth-child(5):after{
-  content: '東馬日本直通';
+  content: '東馬海外直通';
 }
 .legend > div:nth-child(6):after{
-  content: '大众高手';
+  content: '東馬日本直通';
 }
 .legend > div:nth-child(7):after{
-  content: '国家二级';
+  content: '男Sub3/女BQ1';
 }
 .legend > div:nth-child(8):after{
-  content: '小黑铝';
+  content: '国家二级';
+}
+.legend > div:nth-child(9):after{
+  content: '男BQ1/女BQ2';
+}
+.legend > div:nth-child(10):after{
+  content: '男BQ2/女Sub4';
+}
+.legend > div:nth-child(11):after{
+  content: '国家三级';
+}
+.legend > div:nth-child(12):after{
+  content: 'Sub5';
+}
+.legend > div:nth-child(13):after{
+  content: 'Sub6';
+}
+.legend > div:nth-child(14):after{
+  content: '健走';
 }
 
 #infographics-container h2{
