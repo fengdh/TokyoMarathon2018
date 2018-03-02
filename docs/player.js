@@ -97,6 +97,7 @@ function process(arr) {
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed) - gap);
+    d._gap   = gap;
     d._grade = d._pace.map((p, i) => gradeOf(d.gender, p));
 
     // d._distance = interpolateDistance(d);
@@ -141,6 +142,8 @@ var GENDER_COLOR = {
   'M': '#AAF',
 }
 
+var LEFT_LINE = 42;
+
 // callback after receive data
 function receiveData(records) {
   var arr = records.slice();
@@ -171,13 +174,11 @@ function receiveData(records) {
            .attr('cx', 5)
            .attr('cy', -4)
            .attr('r', 4)
-           // .attr('height', 7)
-           // .attr('width',  24)
            .attr('fill', d => GENDER_COLOR[d.gender || '']);
 
     bar.append('text')
             .attr('class', 'name')
-            .attr('x', d => 36)
+            .attr('x', d => LEFT_LINE)
             .attr('y', 0)
             .text(d => d.block + d.no + ' ' + d.name);
 
@@ -189,7 +190,7 @@ function receiveData(records) {
     var rank = bar.insert('g', ':first-child')
             .attr('class', 'rank')
             .classed('marked', d => +d.no === markedNo)
-            .attr('transform', 'translate(6, -15)')
+            .attr('transform', 'translate(9, -15)')
             .on('click', pinMe);
 
     rank.append('rect')
@@ -339,7 +340,7 @@ function run(arr, bar, upto, scale) {
 
     bar.append('rect')
          // .classed('f', d => d.gender === 'F')
-         .attr('x', d => 36 + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
+         .attr('x', d => LEFT_LINE + upto * 2 + (d._total[upto - 1 ] || 0) * scale)
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
@@ -354,7 +355,7 @@ function run(arr, bar, upto, scale) {
          .attr('fill', '#38F')
          .transition()
          .delay(func.gap)
-         .text(d => to_time(d._total[upto]))
+         .text(d => to_time(d._total[upto]) + ' (' + to_time(d._total[upto] + d._gap) +  ')')
          .filter(d => !Number.isNaN(d._total[upto]))
          .attr('fill', '#FFF')
          .transition()
@@ -545,7 +546,7 @@ G----- ウィスキー`;
 
   var t, count;
   list = list.split('\n')
-             .map(r => (r = r.split(/\s+/), {alias: r[1], number: r[0].slice(1), block: r[0].slice(0, 1, 1)}))
+             .map(r => (r = r.split(/\s+/), {alias: r.slice(1).join(' '), number: r[0].slice(1), block: r[0].slice(0, 1, 1)}))
              .filter(r => !isNaN(parseInt(r.number)));
   console.log('Runners List:', list);
 
