@@ -76,6 +76,7 @@ function mx(v) {
 
 // given a gender & pace, return his/her grade
 function gradeOf(gender, pace) {
+  gender = gender.slice(0, 1);
   var i, arr = GRADE[gender + '_tv'];  // tv: time value in seconds
   if (!arr) {
     return -1;
