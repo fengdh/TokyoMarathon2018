@@ -351,7 +351,11 @@ function run(arr, bar, upto, scale) {
 
     bar.append('rect')
          // .classed('f', d => d.gender === 'F')
-         .attr('x', d => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale)
+         .attr('x', (d, i) => 
+            {
+              
+              return LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale) + (i === 0 ? (d._step[upto] || 0) * scale): 0);
+            }
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
@@ -360,7 +364,7 @@ function run(arr, bar, upto, scale) {
          .delay(func.gap)
          .duration(func.step)
          .ease(d3.easeLinear)
-         .attr("width", d => (d._step[upto] || 0) * scale);
+         .attr("width", d => Math.abs((d._step[upto] || 0) * scale));
 
     bar.select('.result')
          .attr('fill', '#38F')
