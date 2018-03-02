@@ -96,7 +96,7 @@ function process(arr) {
     var split = d.split;
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
-    d._total = split.map(m => to_seconds(m.elapsed));
+    d._total = split.map(m => to_seconds(m.elapsed - m.gap));
     d._grade = d._pace.map((p, i) => gradeOf(d.gender, p));
 
     // d._distance = interpolateDistance(d);
