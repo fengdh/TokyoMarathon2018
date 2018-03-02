@@ -356,7 +356,7 @@ function run(arr, bar, upto, scale) {
          .attr('fill', '#38F')
          .transition()
          .delay(func.gap)
-         .text(d => to_time(d._total[upto]) + ' (+' + to_time(d._gap).slice(4) +  ')')
+         .text(d => to_time(d._total[upto]) + ' (+' + to_time(d._gap).slice(3) +  ')')
          .filter(d => !Number.isNaN(d._total[upto]))
          .attr('fill', '#FFF')
          .transition()
