@@ -164,7 +164,7 @@ function receiveData(records) {
                            .attr('transform', (d,i) => 'translate(0, ' + (i * 28 + 20) + ')');
 
       bar.selectAll('rect')
-           .data(d => d)
+           .data(d => [d])
            .enter()
            .append('rect')
            .classed('lap', true)
