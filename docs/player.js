@@ -325,7 +325,7 @@ var timers = [];
 // scale: convert time value in second to width of bar
 function run(arr, bar, upto, scale) {
     upto === 0
-      ? arr.sort((a, b)=> mx(a._step[upto]) -  mx(b._step[upto]));
+      ? arr.sort((a, b)=> mx(a._step[upto]) -  mx(b._step[upto]))
       : arr.sort((a, b)=> mx(a._total[upto]) -  mx(b._total[upto]));
     var factor = upto > 0 ? 6 : 3;
     factor = 24;
