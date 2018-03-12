@@ -353,7 +353,8 @@ function run(arr, bar, upto, scale) {
 
     bar.append('rect')
          // .classed('f', d => d.gender === 'F')
-         .attr('x', (d, i) => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale)
+         // .attr('x', (d, i) => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale)
+         .attr('x', (d, i) => LEFT_LINE + upto * 1 + (upto === 0 ? d._total[0] : d._total[upto - 1 ] ) * scale)
          .attr('y', 4)
          .attr('height', 7)
          .attr('width',  0)
