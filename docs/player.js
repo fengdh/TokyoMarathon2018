@@ -371,7 +371,7 @@ function run(arr, bar, upto, scale) {
          .attr('height', 7)
          .attr('width',  0)
          .attr('fill', d => GRADE_COLOR[d._grade[upto]])// step_color(upto))
-         .attr('stroke', d => upto > 0 : 'none' : '#CCC')
+         .attr('stroke', d => upto > 0 ? 'none' : '#CCC')
          .attr('stroke-dasharray', d => '5,10,5')
          .transition()
          .delay(func.gap)
