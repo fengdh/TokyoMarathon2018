@@ -41,7 +41,7 @@ var MAX = to_seconds('7:00:00');
 var WAIT = 500;
 
 // count of split for each team
-var COUNT_OF_SPLIT = 9;
+var COUNT_OF_SPLIT = 9 + 1;
 
 // convert elapsed time in second to "HH:MM:SS"
 function to_time(seconds) {
@@ -327,6 +327,7 @@ function run(arr, bar, upto, scale) {
     upto === 0
       ? arr.sort((a, b) => mx(a._step[upto]) -  mx(b._step[upto]))
       : arr.sort((a, b) => mx(a._total[upto]) -  mx(b._total[upto]));
+
     var factor = upto > 0 ? 24 : 1;
     // factor = 24;
     var func = {
@@ -335,7 +336,11 @@ function run(arr, bar, upto, scale) {
     };
 
     var fastest = arr.reduce( (p, c) => ((c = upto === 0 ? 0 : c._total[upto - 1]) < p ? c: p), Number.MAX_SAFE_INTEGER);
-    var max = arr.reduce( (p, c) => (c =c._step[upto]) > p ? c : p, 0);
+    var max = arr.reduce( (p, c) => (c = c._step[upto]) > p ? c : p, 0);
+
+    if (upto === 0) {
+      LEFT_LINE = Math.max(max * scale, LEFT_LINE);
+    }
 
     max += arr.reduce((p, c) => {
       c = func.gap(c) * factor;
@@ -354,7 +359,6 @@ function run(arr, bar, upto, scale) {
     svgTeams.selectAll('.rank').on('click', pinMe);
 
     bar.append('rect')
-         // .classed('f', d => d.gender === 'F')
          // .attr('x', (d, i) => LEFT_LINE + upto * 1 + (d._total[upto - 1 ] || 0) * scale)
          .attr('x', (d, i) => LEFT_LINE + upto * 1 + (upto === 0 ? d._total[0] : (upto === 1 ? 0 : d._total[upto - 1 ]) ) * scale)
          .attr('y', 4)
@@ -365,8 +369,7 @@ function run(arr, bar, upto, scale) {
          .delay(func.gap)
          .duration(func.step)
          .ease(d3.easeLinear)
-         .attr("width", d => Math.abs((d._step[upto] || 0) * scale));
-         // .attr("width", d => Math.abs((d._step[upto] || 0) * scale));
+         .attr("width", d => (d._step[upto] || 0) * scale);
 
     bar.select('.result')
          .attr('fill', '#38F')
