@@ -333,7 +333,7 @@ function run(arr, bar, upto, scale) {
     // factor = 24;
     var func = {
       step: d => d._step[upto] / factor,
-      gap:  d => (upto === 0 ? 0 : (upto === 1 ? 0 : (d._total[upto - 1] - fastest)))
+      gap:  d => (upto === 0 ? 0 : (upto === 1 ? d.step[0] : (d._total[upto - 1] - fastest)))
     };
 
     var fastest = arr.reduce( (p, c) => ((c = upto === 0 ? 0 : c._total[upto - 1]) < p ? c: p), Number.MAX_SAFE_INTEGER);
