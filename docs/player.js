@@ -104,7 +104,7 @@ function process(arr) {
       position: '0km',
       elapsed: '0:00:00',
       duration: d.result.gap,
-      pace: '0:00:00',
+      pace: '20:00:00',
     });
 
     d._step = split.map(m => to_seconds(m.duration));
