@@ -97,6 +97,7 @@ function process(arr) {
     d.name = d.alias || d.name.split('／').pop();
     d.gender = d.gender.slice(0, 1);
     d.gender = d.gender === 'W' ? 'F' : d.gender;
+    d.dispName = d.block + ' ' + d.name;
 
     var split = d.split, gap = to_seconds(d.result.gap);
 
@@ -189,11 +190,11 @@ function receiveData(records) {
            .attr('r', 4)
            .attr('fill', d => GENDER_COLOR[d.gender || '']);
 
-    bar.append('text')
-            .attr('class', 'name')
-            .attr('x', d => LEFT_LINE)
-            .attr('y', 0)
-            .text(d => d.block + d.no + ' ' + d.name);
+    // bar.append('text')
+    //         .attr('class', 'name')
+    //         .attr('x', d => LEFT_LINE)
+    //         .attr('y', 0)
+    //         .text(d => d.block + d.no + ' ' + d.name);
 
     bar.append('text')
             .attr('class', 'result')
@@ -340,6 +341,11 @@ function run(arr, bar, upto, scale) {
 
     if (upto === 0) {
       LEFT_LINE = Math.max(max * scale, LEFT_LINE);
+      bar.append('text')
+              .attr('class', 'name')
+              .attr('x', d => LEFT_LINE)
+              .attr('y', 0)
+              .text(d => d.dispName);
     }
 
     max += arr.reduce((p, c) => {
