@@ -99,18 +99,20 @@ function process(arr) {
     d.gender = d.gender === 'W' ? 'F' : d.gender;
 
     var split = d.split, gap = to_seconds(d.result.gap);
-    // split.unshift({
-    //   position: '0km',
-    //   elapsed: "0:00:00",
-    //   duration: to_time(-gap),
-    //   pace: "SLOW"
-    // });
     d._step = split.map(m => to_seconds(m.duration));
     d._pace = split.map(m => to_seconds(m.pace));
     d._total = split.map(m => to_seconds(m.elapsed) - gap);
     d._gap   = gap;
     d._grade = d._pace.map((p, i) => gradeOf(d.gender, p));
 
+    split.unshift({
+      position: '0km',
+      _total: -gap,
+      _step: gap,
+      _pace: "SLOW",
+      _gap: 0,
+      _grade: 'SLOW'
+    });
     // d._distance = interpolateDistance(d);
   });
 }
