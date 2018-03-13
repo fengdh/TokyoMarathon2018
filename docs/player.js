@@ -329,11 +329,10 @@ function run(arr, bar, upto, scale) {
       ? arr.sort((a, b) => mx(a._step[upto]) -  mx(b._step[upto]))
       : arr.sort((a, b) => mx(a._total[upto]) -  mx(b._total[upto]));
 
-    var factor = upto > 0 ? 24 : 1;
-    // factor = 24;
+    var factor = upto > 0 ? 24 : 8;
     var func = {
       step: d => d._step[upto] / factor,
-      gap:  d => (upto === 0 ? 0 : (upto === 1 ? d._step[0] : (d._total[upto - 1] - fastest)))
+      gap:  d => (upto === 0 ? 0 : (upto === 1 ? d._step[0] - arr[0]._step[0]: (d._total[upto - 1] - fastest)))
     };
 
     var fastest = arr.reduce( (p, c) => ((c = upto === 0 ? 0 : c._total[upto - 1]) < p ? c: p), Number.MAX_SAFE_INTEGER);
