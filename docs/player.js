@@ -406,7 +406,7 @@ function run(arr, bar, upto, scale) {
          clearTimeout(timers[upto]);
        }
        if (!stepByStep) {
-         timers[upto+1] = setTimeout(() => run(arr, bar, upto+1, scale),  stepByStep ? 0 : max + (upto > 0 ? WAIT : 3000));
+         timers[upto+1] = setTimeout(() => run(arr, bar, upto+1, scale),  stepByStep ? 0 : max + (upto > 0 ? WAIT : 1800));
        }
        clearTimeout(timers[upto]);
        if (upto + 1 > g_upto) {
