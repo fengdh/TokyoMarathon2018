@@ -198,7 +198,7 @@ function receiveData(records) {
 
     bar.append('text')
             .attr('class', 'result')
-            .attr('x', d => 240)
+            .attr('x', d => 220)
             .attr('y', 0);
 
     var rank = bar.insert('g', ':first-child')
