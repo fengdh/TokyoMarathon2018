@@ -321,8 +321,7 @@ var timers = [];
 
 var hash = location.hash;
 if (!!hash) {
-  hash = hash.slice(1);
-  stepByStep = hash.filter( d => d == 'manual').length > 0;
+  stepByStep = hash.slice(1).split('&').filter( d => d == 'manual').length > 0;
 }
 
 // run upto member N
