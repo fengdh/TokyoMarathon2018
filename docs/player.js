@@ -319,6 +319,12 @@ function key(d) {
 var stepByStep = false;
 var timers = [];
 
+var hash = location.hash;
+if (!!hash) {
+  hash = hash.slice(1);
+  stepByStep = hash.filter( d => d == 'manual').length > 0;
+}
+
 // run upto member N
 // arr : array of records
 // bar: selection of all bars
