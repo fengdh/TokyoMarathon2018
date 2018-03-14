@@ -15,7 +15,7 @@ $web.Headers['cookie'] = "ALLSPORTS_SESS=3ada7d3768ff6205a31bd975db437774527c73f
 
 $web
 
-Get-Content "D:\github\TokyoMarathon2018\docs\album\files.txt" |
+Get-Content "D:\github\TokyoMarathon2018\docs\album\list.txt" |
     Foreach-Object {
 				$item = $_.Split(" ",[System.StringSplitOptions]::RemoveEmptyEntries)
 				""
