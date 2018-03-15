@@ -1,0 +1,31 @@
+layer W: 含水印的大图
+layer T: 不含水印的小图
+layer Tx： 扩大
+layer W/T/Tx #1: 拷贝
+layer M: 水印(mask)
+layer BK: 纯黑背景图层
+
+初始条件：
+1. 导入 layer W
+2. 导入 layer T -->  layer Tx
+3. 各做1份拷贝
+4. 最下层放置纯黑背景图层 layer BK
+5. 除了layer W/Tx #1 和 layer BK，都关闭显示
+
+求水印
+1. layer Tx #1
+    | substract(差值)
+   layer W  #1
+2. merge --> layer M
+3. layer M <-- 指定黑色为透明色
+
+叠加去除水印
+1. layer M #1
+    | grain extract(微粒抽出)
+   layer M
+    | substract(减算)
+   layer W
+    | standard
+   layer BK
+
+可以适当调整运算mode，增加水印层，或改变layer M的亮度/对比度来获得更好效果
