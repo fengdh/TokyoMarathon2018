@@ -19,7 +19,7 @@ script.onload = function() {
     // using defined number cards or start collect number cards from page 1
     $.when(collect_number_cards())
      .then(list => {
-                list = [...list, ...NUM_CARDS];
+                list = [...new Set([...list, ...NUM_CARDS])];
                 console.log('Number Cards count = ', list.length, list);
                 // list = list.slice(0, 10);
 
